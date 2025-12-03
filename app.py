@@ -1,14 +1,17 @@
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
+
 @app.route('/')
 def index():
-    app.render_template(form.html) 
-@app.route('/submit',methods=['POST'])
-def submit():
-    name = request.form('username')
-    email = request.form('email')
-    rollno = request.form('rollno')
-    app.render_template('result.html',name,email,rollno) 
-if __main__ == '__name__':
-    app.run(debug = True) 
+    return render_template('form.html')
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form['name']
+    email = request.form['email']
+    rollno = request.form['rollno']
+    return render_template('result.html', name=name, email=email, rollno=rollno)
+
+if __name__ == '__main__':
+    app.run(debug=True)
